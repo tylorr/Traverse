@@ -2,7 +2,7 @@ import sublime
 import sublime_plugin
 
 # Constants
-STEP = 1000
+STEP = 100
 
 # Shared state
 stopRequested = False
@@ -20,6 +20,12 @@ class TraverseCommand(sublime_plugin.TextCommand):
         self.update()
 
     def init(self):
+        global stopRequested
+        global move
+
+        stopRequested = False
+        move = None
+
         self.pos = [0, 0]
         self.prev_pos = self.pos
         self.stopRequested = False
