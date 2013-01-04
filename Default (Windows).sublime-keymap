@@ -1,0 +1,20 @@
+[
+    {
+        "keys": ["ctrl+alt+g"], "command": "traverse"
+    },
+    {
+        "keys": ["ctrl+alt+s"], "command": "stop_traverse"
+    },
+    {
+        "keys": ["ctrl+alt+j"], "command": "move_traverse", 
+        "args": {
+          "direction": "left"
+        }
+    },
+    {
+        "keys": ["ctrl+alt+l"], "command": "move_traverse", 
+        "args": {
+          "direction": "right"
+        }
+    }
+]
