@@ -2,7 +2,7 @@ import sublime
 import sublime_plugin
 
 # Constants
-STEP = 100
+STEP = 50
 
 # Shared state
 stopRequested = False
@@ -38,9 +38,7 @@ class TraverseCommand(sublime_plugin.TextCommand):
 
     def update(self):
         global move
-
-        if (stopRequested):
-            return
+        global stopRequested
 
         dir = 0
 
@@ -66,6 +64,10 @@ class TraverseCommand(sublime_plugin.TextCommand):
         # erase old position
         self.draw_at(' ', self.prev_pos)
 
+        # End loop after erasing self
+        if (stopRequested):
+            return
+
         # move to new position
         self.draw_at('@', self.pos)
 
@@ -79,8 +81,7 @@ class TraverseCommand(sublime_plugin.TextCommand):
         floor = self.char_at(self.pos[0], self.pos[1] + 1)
 
         if (floor == '\0'):
-            print 'done'
-            return
+            stopRequested = True
 
         # Check if open
         isOpen = (floor == ' ')
